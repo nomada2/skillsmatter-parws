@@ -1,4 +1,4 @@
-#Modern patterns of concurrent and parallel programming in .NET 
+## Modern patterns of concurrent and parallel programming in .NET 
 
 
 ## Requirements
