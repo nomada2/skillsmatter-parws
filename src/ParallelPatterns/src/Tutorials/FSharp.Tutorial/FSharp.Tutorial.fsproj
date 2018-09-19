@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="CurryingAndPartialApplication.fs" />
+    <Compile Include="FunctionAsFirstClass.fs" />
+    <Compile Include="FunctionDefinition.fs" />
+    <Compile Include="Recursion.fs" />
+    <Compile Include="Values.fs" />
+    <None Include="Immutability.fsx" />
+    <None Include="Walkthrough 1.fsx" />
+    <None Include="Walkthrough 2.fsx" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+</Project>

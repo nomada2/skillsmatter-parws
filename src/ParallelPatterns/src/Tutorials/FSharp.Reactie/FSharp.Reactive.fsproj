@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="ReactiveAgent.fs" />
+    <Compile Include="Utils.fs" />
+    <None Include="1.ObservableSensor.fsx" />
+    <None Include="2.RXStocksSubject.fsx" />
+    <None Include="3.FollowTheArrow.fsx" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reactive" Version="4.1.0" />
+    <PackageReference Include="System.Reactive.Interfaces" Version="4.1.0" />
+    <PackageReference Include="System.Reactive.Linq" Version="4.1.0" />
+  </ItemGroup>
+
+</Project>

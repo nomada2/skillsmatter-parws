@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="ParallelSeq.fs" />
+    <Compile Include="Utils.fs" />
+    <None Include="1.SynVsAsync.fsx" />
+    <None Include="2.ErrorHandling.fsx" />
+    <None Include="3.Cancellation.fsx" />
+    <Compile Include="AsyncAndParallel.fs" />
+    <Compile Include="AsyncParallelMapReduce.fs" />
+    <Compile Include="CancellationExample.fs" />
+    <Compile Include="SimpleAsyncExample.fs" />
+    <None Include="AsyncHelpers.fsx" />
+    <None Include="Semaphore.fsx" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+</Project>

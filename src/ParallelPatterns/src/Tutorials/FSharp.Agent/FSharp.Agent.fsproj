@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Utils.fs" />
+    <None Include="1.Agent101.fsx" />
+    <None Include="2.AgentSystem.fsx" />
+    <None Include="3.AgentPerf.fsx" />
+    <None Include="4.AgentPipeline.fsx" />
+    <Compile Include="ReusableAgents.fs" />
+    <Compile Include="AgentWorker.fs" />
+    <Compile Include="AsyncObjectPool.fs" />
+    <Compile Include="AsyncWorker.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+</Project>
