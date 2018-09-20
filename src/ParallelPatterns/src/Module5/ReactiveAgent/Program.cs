@@ -34,7 +34,6 @@ namespace ReactiveAgent.CS
 
         public static void Main(string[] args)
         {
-            finiscimi
             //PingPongAgents.Start();
             //Console.ReadLine();
 

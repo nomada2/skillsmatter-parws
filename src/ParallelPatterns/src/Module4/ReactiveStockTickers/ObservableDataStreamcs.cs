@@ -54,7 +54,7 @@ namespace RxConcurrentStockTickers
             {
                 stockFiles
                     .ObservableStreams(StockData.Parse)
-                    .Throttle(TimeSpan.FromMilliseconds(20))
+                    
                     // TODO :
                     //      try different debauncing operator to reduce
                     //      or tame back-pressure (Ex Buffer, Throttle...)

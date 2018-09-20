@@ -13,10 +13,9 @@ namespace ReactiveEx
             Console.WriteLine("Press any key to stop ...");
 
             // TODO 
-            // Uncoment this code and copmlete the TODOs
-            // in the "PingPongSubject" file
-            //var pongSubscription = ping.Subscribe(pong);
-            //var pingSubscription = pong.Subscribe(ping);
+            // register the Ping and Pong (Observable/Observer) to each other
+            // var pongSubscription
+            // var pingSubscription
 
             Console.ReadKey();
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Reactive
 {
     // TODO implement the interface "ISubject<Pong, Ping>"
-    public class Ping //: ISubject<Pong, Ping>
+    public class Ping  
     {
 
         // Subscribes an observer to the observable sequence.
@@ -27,7 +27,7 @@ namespace Reactive
     }
 
     // TODO implement the interface "ISubject<Ping, Pong>"
-    public class Pong //: ISubject<Ping, Pong>
+    public class Pong 
     {
         // Subscribes an observer to the observable sequence.
         public IDisposable Subscribe(IObserver<Pong> observer)

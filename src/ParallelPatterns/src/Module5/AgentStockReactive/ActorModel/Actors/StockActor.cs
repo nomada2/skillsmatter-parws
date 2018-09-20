@@ -51,6 +51,7 @@ namespace ReactiveStock.ActorModel.Actors
             timer.AutoReset = true;
             timer.Elapsed += (sender, e) => self.Post(refreshMsg);
             timer.Start();
+
             // TODO: Ideally we have to stop and dispose timer
 
             return self;

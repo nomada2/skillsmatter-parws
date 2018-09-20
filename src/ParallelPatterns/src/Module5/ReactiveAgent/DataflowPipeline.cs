@@ -20,17 +20,16 @@ namespace DataflowPipeline
 
             };
             // Download a book as a string
-            var downloadBook = new TransformBlock<string, string>(uri =>
+            var downloadBook = new Func<string, string>(uri =>
             {
                 Console.WriteLine("Downloading the book...");
 
                 return new WebClient().DownloadString(uri);
 
-            },opt );
-
+            });
 
             // splits text into an array of strings.
-            var createWordList = new TransformBlock<string, string[]>(text =>
+            var createWordList = new Func<string, string[]>(text =>
             {
                 Console.WriteLine("Creating list of words...");
 
@@ -45,50 +44,48 @@ namespace DataflowPipeline
 
                 return text.Split(new char[] { ' ' },
                    StringSplitOptions.RemoveEmptyEntries);
-            }, new ExecutionDataflowBlockOptions() { BoundedCapacity = bc });
+            });
 
             // Remove short words and return the count
-            var filterWordList = new TransformBlock<string[], int>(words =>
+            var filterWordList = new Func<string[], int>(words =>
             {
                 Console.WriteLine("Counting words...");
 
                 var wordList = words.Where(word => word.Length > 3).OrderBy(word => word)
                    .Distinct().ToArray();
                 return wordList.Count();
-            }, new ExecutionDataflowBlockOptions() { BoundedCapacity = bc });
+            });
 
             // Implement an agent named "printWordCount" block that print the results
             // then link the pipeline 
-           
-            // TODO : 5.6
-            // Remove this step and replace with RX
-            //filterWordList.LinkTo(printWordCount);
 
+            var printWordCount = new Action<int>(wordcount =>
+            {
+                Console.WriteLine("Found {0} words",
+                   wordcount);
+            });
+
+            // TODO : 5.6
+            // implement the Dataflow building blocks using the previous 
+            // generic delegates.
+            // Then link the blocks to generate the pipeline
+            // The last step of the pipeline should be using Reactive Extension.
+
+            // TODO uncoment these code and start the data-flow 
+            // Download Origin of Species
+            // downloadBookBlock.Post("http://www.gutenberg.org/files/2009/2009.txt");
+            // downloadBookBlock.Post("http://www.gutenberg.org/files/2010/2010.txt");
+            // downloadBookBlock.Post("http://www.gutenberg.org/files/2011/2011.txt");
+
+
+            // TODO
             // each completion task in the pipeline creates a continuation task
             // that marks the next block in the pipeline as completed.
             // A completed dataflow block processes any buffered elements, but does
             // not accept new elements.
 
-            downloadBook.Completion.ContinueWith(t =>
-            {
-                if (t.IsFaulted) ((IDataflowBlock)createWordList).Fault(t.Exception);
-                else createWordList.Complete();
-            });
-            createWordList.Completion.ContinueWith(t =>
-            {
-                if (t.IsFaulted) ((IDataflowBlock)filterWordList).Fault(t.Exception);
-                else filterWordList.Complete();
-            });
             
 
-            // Download Origin of Species
-            downloadBook.Post("http://www.gutenberg.org/files/2009/2009.txt");
-            downloadBook.Post("http://www.gutenberg.org/files/2010/2010.txt");
-            downloadBook.Post("http://www.gutenberg.org/files/2011/2011.txt");
-
-            // Mark the head of the pipeline as complete.
-            downloadBook.Complete();
-            
             Console.WriteLine("Finished. Press any key to exit.");
             Console.ReadLine();
 
