@@ -37,6 +37,11 @@ namespace ReactiveAgent.Agents
                     await counter.Send(word.ToUpper()));
             });
 
+        // TODO 
+        // Add a property that exposes an IObservable<'R> to the IAgent interface
+        // The implementation of this property should stream the result of the Agent
+        // Then, implement similar logic of the "counter" Agent using the Observable exposed 
+
         static IReplyAgent<string, (string, int)> counter =
             Agent.Start(ImmutableDictionary<string, int>.Empty,
                 (ImmutableDictionary<string, int> state, string word) =>
