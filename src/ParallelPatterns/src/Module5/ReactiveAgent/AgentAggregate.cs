@@ -26,7 +26,7 @@ namespace ParallelPatterns
                 @"http://www.google.com"
             };
 
-            // TODO (8)
+            // TODO (8
             // Agent fold over state and messages - Aggregate
             urls.Aggregate(ImmutableDictionary<string, string>.Empty,
                 (state, url) =>
@@ -45,10 +45,21 @@ namespace ParallelPatterns
 
             // TODO (8)  
             // replace the implementation using the urls.Aggregate with a new one that uses an Agent.
-
             var agentStateful= Agent.Start(
                 new Dictionary<string, string>(),
-                (Dictionary<string, string> state, string msg) => state);
+                async (Dictionary<string, string> state, string msg) => {
+                    
+                    if (state.TryGetValue(msg, out var content)) 
+                        return state;
+                    
+                    using (var webClient = new HttpClient())
+                    {
+                        System.Console.WriteLine($"Downloading '{msg}' async ...");
+                        content = await webClient.GetStringAsync(msg);
+                        //IO.File.WriteAllText(CreateFileNameFromUrl(msg), content);
+                        return state.Add(msg, content);
+                    }               
+                });
 
             // run this code 
             urls.ForEach(agentStateful.Post);
